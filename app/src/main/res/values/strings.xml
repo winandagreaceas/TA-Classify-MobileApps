@@ -1,0 +1,20 @@
+<resources>
+
+    <string name="app_name">ClassiApp</string>
+
+    <!--    MAIN ACTIVITY-->
+    <string name="welcome_tagline">\<b>Welcome to ClassiApp</b></string>
+    <string name="classi_steps">
+        Unggah foto wajah dengan pencahayaan yang baik untuk hasil terbaik. Pastikan wajah terlihat jelas dan tidak tertutup objek lain.
+    </string>
+    <string name="unggah_button1">\<b>Unggah Gambar</b></string>
+    <string name="classify_button">\<b>Klasifikasi</b></string>
+
+    <!--    HASIL KLASIFIKASI-->
+    <string name="h2_hasil">\<b>- HASIL KLASIFIKASI -</b></string>
+    <string name="gender">Gender: </string>
+    <string name="percent">Persentase: </string>
+
+    <string name="backtomain_button">\<b>Kembali ke Beranda</b></string>
+    <string name="exitapp_button">\<b>Tutup Aplikasi</b></string>
+</resources>
