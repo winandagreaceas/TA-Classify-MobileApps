@@ -13,7 +13,13 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.classiapp_ta2324_10.R
 import com.example.classiapp_ta2324_10.databinding.ActivityMainBinding
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.ImageProcessor
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.image.ops.ResizeOp
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
+import java.nio.ByteBuffer
 
 class MainActivity : AppCompatActivity() {
     private val PICK_IMAGE_REQUEST = 1
@@ -36,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             openGallery()
         }
 
-        classifyButton.isEnabled = false
+        classifyButton.isEnabled = false // Disable classify button initially
 
         toDetail(classifyButton) // Panggil metode toDetail() di sini untuk menangani klik tombol btn Klasifikasi
     }
@@ -67,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
                 val rotatedBitmap = rotateImageIfRequired(bitmap, imageUri)
                 imagePreview.setImageBitmap(rotatedBitmap)
-                binding.btnKlasifikasi.isEnabled = true
+                binding.btnKlasifikasi.isEnabled = true // Enable classify button after image is selected
             } catch (e: Exception) {
                 e.printStackTrace()
             }
