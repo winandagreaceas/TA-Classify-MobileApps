@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,95 +7,64 @@
     tools:context=".ClassiApp.ClassificationResultActivity">
 
     <ImageView
-        android:id="@+id/imageResult"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:layout_alignParentTop="true"
+        android:id="@+id/imagePreview"
+        android:layout_width="180dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
         android:contentDescription="Foto"
         android:onClick="pickPhoto"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229" />
+        android:src="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/textPercent"
-        style="@style/Text.P5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:fontFamily="@font/poppins_regular"
-        android:text="@string/percent"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textGender"
-        app:layout_constraintVertical_bias="0.075" />
-
-    <TextView
-        android:id="@+id/textHasil"
+        android:id="@+id/h2_classify"
         style="@style/TextBold.H3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imagePreview"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/h2_hasil"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageResult"
-        app:layout_constraintVertical_bias="0.046" />
+        android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/textGender"
-        style="@style/Text.P5"
+        android:id="@+id/textHasil"
+        style="@style/Text.P6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:fontFamily="@font/poppins_regular"
-        android:text="@string/gender"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textHasil"
-        app:layout_constraintVertical_bias="0.051" />
-
-    <Button
-        android:id="@+id/btn_beranda"
-        style="@style/Text.P6"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/h2_classify"
         android:layout_marginTop="20dp"
-        android:background="@drawable/button_rounded"
         android:fontFamily="@font/poppins_regular"
-        android:text="@string/backtomain_button"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPercent" />
+        android:text="Hasil Klasifikasi Ditampilkan"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btn_exit"
         style="@style/Text.P6"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textHasil"
+        android:layout_marginTop="80dp"
         android:background="@drawable/button_rounded"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/exitapp_button"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_beranda" />
+        android:textAllCaps="false" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_beranda"
+        style="@style/Text.P6"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_exit"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/backtomain_button"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@+id/textHasil" />
+
+</RelativeLayout>

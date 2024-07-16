@@ -1,41 +1,42 @@
 package com.example.classiapp_ta2324_10.ClassiApp
+
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.classiapp_ta2324_10.R
-import com.example.classiapp_ta2324_10.databinding.ActivityClassificationResultBinding
-import com.example.classiapp_ta2324_10.databinding.ActivityMainBinding
-import org.tensorflow.lite.Interpreter
-import java.io.FileInputStream
-import java.nio.MappedByteBuffer
-import java.nio.channels.FileChannel
 
 class ClassificationResultActivity : AppCompatActivity() {
-    val binding: ActivityClassificationResultBinding by lazy {
-        ActivityClassificationResultBinding.inflate(layoutInflater)
-    }
+    lateinit var btnBeranda: Button
+    lateinit var btnExit: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_classification_result)
 
-        val imageUriString = intent.getStringExtra("image_uri")
-        val imageUri = Uri.parse(imageUriString)
+        val classificationResult = intent.getStringExtra("textHasil") ?: "Data tidak tersedia"
+        val imageUri = intent.getStringExtra("imageUri")
 
         // Tampilkan gambar pada ImageView
-        binding.imageResult.setImageURI(imageUri)
+        val imageResult = findViewById<ImageView>(R.id.imagePreview)
+        imageResult.setImageURI(Uri.parse(imageUri))
+
+        findViewById<TextView>(R.id.textHasil).text = classificationResult
+
+        btnBeranda = findViewById(R.id.btn_beranda)
+        btnExit = findViewById(R.id.btn_exit)
 
         // Set OnClickListener untuk tombol btn_beranda
-        binding.btnBeranda.setOnClickListener {
+        btnBeranda.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
         // Set OnClickListener untuk tombol btn_exit
-        binding.btnExit.setOnClickListener {
+        btnExit.setOnClickListener {
             finishAffinity() // Menutup semua aktivitas dan keluar dari aplikasi
         }
     }

@@ -1,2 +1,2 @@
-laki-laki
-perempuan
+LAKI-LAKI
+PEREMPUAN
