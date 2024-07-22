@@ -1,25 +1,29 @@
 package com.example.classiapp_ta2324_10.ClassiApp
 
+import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.classiapp_ta2324_10.R
-import com.example.classiapp_ta2324_10.ml.Model10
 import com.example.classiapp_ta2324_10.ml.Model11
+import com.example.classiapp_ta2324_10.ml.Model12
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.nio.ByteBuffer
@@ -77,7 +81,8 @@ class MainActivity : AppCompatActivity() {
 //                }
 //                byteBuffer.rewind()
 
-                val model = Model11.newInstance(this)
+                val model = Model12.newInstance(this)
+
                 val inputFeature0 =
                     TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
                 inputFeature0.loadBuffer(tensorImage.buffer)
@@ -114,10 +119,31 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK && data != null){
             val uri = data.data
-            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
-            bitmap = rotateImageIfRequired(bitmap!!, uri!!)
+            Log.d("dddd", uri.toString())
+            bitmap = getBitmap(uri!!)
+            Log.d("dddd", bitmap.toString())
+//            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+            bitmap = rotateImageIfRequired(bitmap!!, uri)
             imagePreview.setImageBitmap(bitmap)
         }
+    }
+
+    fun getBitmap(file: Uri): Bitmap?{
+        var bitmap1: Bitmap ?= null
+        try {
+            val inputStream = contentResolver.openInputStream(file)
+            bitmap1 = BitmapFactory.decodeStream(inputStream)
+            // close stream
+            try {
+                inputStream?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+        }catch (e: FileNotFoundException){
+            e.printStackTrace()
+        }
+        return bitmap1
     }
 
     private fun rotateImageIfRequired(bitmap: Bitmap, selectedImage: Uri): Bitmap {
